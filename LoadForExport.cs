@@ -10,5 +10,6 @@ namespace BMDtoExcel
     {
         public byte[] bytes = new byte[] {}; // Bytes
         public string name = ""; //Name
+        public double frequency = 0; // Frequency, if it's mode
     }
 }

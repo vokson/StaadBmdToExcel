@@ -8,7 +8,7 @@ namespace BMDtoExcel
     abstract class CombinationRule
     {
         public string name = "Empty";
-        abstract public float combine(float[] values);
+        abstract public float combine(float[] values, double[] frequencies);
     }
 
     class SRSSCombinationRule : CombinationRule
@@ -17,7 +17,7 @@ namespace BMDtoExcel
             this.name = "SRSS";
         }
 
-        public override float combine (float[] values)
+        public override float combine (float[] values, double[] frequencies = null)
         {
             double result = 0.0;
 
@@ -39,7 +39,7 @@ namespace BMDtoExcel
             this.name = "1.3_SRSS";
         }
 
-        public override float combine(float[] values)
+        public override float combine(float[] values, double[] frequencies = null)
         {
             double result = 0.0;
 
@@ -62,7 +62,7 @@ namespace BMDtoExcel
             this.name = "UZ";
         }
 
-        public override float combine(float[] values)
+        public override float combine(float[] values, double[] frequencies = null)
         {
             double result = 0.0;
 
@@ -91,7 +91,7 @@ namespace BMDtoExcel
             this.name = "|UZ|";
         }
 
-        public override float combine(float[] values)
+        public override float combine(float[] values, double[] frequencies = null)
         {
             double result = 0.0;
 

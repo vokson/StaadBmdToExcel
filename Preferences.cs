@@ -9,17 +9,27 @@ namespace BMDtoExcel
 {
     class Preferences
     {
+        // Path
        public static string stdFilePath = "";
        public static string bmdFilePath = "";
+       public static string mshFilePath = "";
        public static string fileName = "";
+
+        // Flags
+        /*Will be frequencies used for combination or not? */
+        public static bool isFrequencyUsed = false;
+
+        // Objects
        public static StdFileManager stdFileManager = new StdFileManager();
        public static BmdFileManager bmdFileManager = new BmdFileManager();
+       public static MshFileManager mshFileManager = new MshFileManager();
+       public static FloatSearch floatSearchManager = new FloatSearch();
 
         // Regular expression for correct symbols
        private static Regex rxDigits = new Regex(@"[-,\d]+");
 
         //Conversion ratios
-        public const double ratioLbsToNewton = 4.44822162825;
+       public const double ratioLbsToNewton = 4.44822162825;
        public const double ratioInchToMeter = 0.0254;
 
         // Provide name of file witout path
@@ -34,8 +44,13 @@ namespace BMDtoExcel
 
         //Convert string to load array
         // Input format "1, 2, 10-15,40,36-37"
-        public static int[] convertStringToLoadArray(string s)
+        // isArrayIndex = true - substract 1 from load number
+        public static int[] convertStringToLoadArray(string s, bool isArrayIndex = true)
         {
+            // Set offset
+            int offset;
+            if (isArrayIndex) { offset = -1; } else { offset = 0; }
+
             //Prepare result array
             List<int> result = new List<int> { };
 
@@ -54,8 +69,8 @@ namespace BMDtoExcel
                     int minusPos = commaArray[i].IndexOf('-');
                     if (minusPos == -1)
                     {
-                        // Substract number-1
-                        result.Add(Convert.ToInt32(commaArray[i])-1);
+                        // Substract number, if index of array
+                        result.Add(Convert.ToInt32(commaArray[i])+offset);
                     } else
                     {
                         int beg, end;
@@ -72,8 +87,8 @@ namespace BMDtoExcel
 
                         for (int k=beg; k <= end; k++)
                         {
-                            // Substract number-1
-                            result.Add(k-1);
+                            // Substract number, if index of array
+                            result.Add(k+offset);
                         }
                     }
                 }

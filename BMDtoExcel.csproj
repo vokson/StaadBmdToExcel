@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CombinationRule.cs" />
     <Compile Include="ExcelExportFactory.cs" />
+    <Compile Include="FloatSearch.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -52,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="LoadForExport.cs" />
+    <Compile Include="MshFileManager.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

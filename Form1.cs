@@ -178,22 +178,30 @@ namespace BMDtoExcel
             // Add combination rules
             if (srssCheckBox.Checked)
             {
-                factory.rules.Add(new SRSSCombinationRule());
+                factory.rules.Add(new SRSSCombinationRule("SRSS", 1.0));
             }
 
             if (multiSrssCheckBox.Checked)
             {
-                factory.rules.Add(new multiSRSSCombinationRule());
+                factory.rules.Add(new SRSSCombinationRule("sqrt(1.3)_SRSS", Math.Sqrt(1.3)));
             }
 
             if (uzCheсkBox.Checked)
             {
-                factory.rules.Add(new UZCombinationRule());
+                factory.rules.Add(new UZCombinationRule("UZ", 1.0));
             }
 
             if (modulusUzCheckBox.Checked)
             {
-                factory.rules.Add(new UZModulusCombinationRule());
+                factory.rules.Add(new UZModulusCombinationRule("|UZ|", 1.0));
+            }
+
+            if (Preferences.isFrequencyUsed)
+            {
+                if (cqcCheckBox.Checked)
+                {
+                    factory.rules.Add(new CQCCombinationRule("CQC", 1.0, 0.03));
+                }
             }
 
             factory.saveToExcelFile(Directory.GetCurrentDirectory() + "\\" + Preferences.fileName + ".xls");

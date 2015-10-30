@@ -98,17 +98,24 @@ namespace BMDtoExcel
             for (int i=0; i < combinedLoad.bytes.Length; i += 4)
             {
                 // Prepare array with values
-                float[] array = new float[this.loadsCount];
+                float[] arrayValues = new float[this.loadsCount];
+                // Prepare array with frequencies
+                double[] arrayFrequencies = new double[this.loadsCount];
 
                 // Fill array
                 for (int k=0; k < this.loadsCount; k++)
                 {
                     //Read 4 bytes
-                    array[k] = BitConverter.ToSingle(this.loads[k].bytes, i);
+                    arrayValues[k] = BitConverter.ToSingle(this.loads[k].bytes, i);
+
+                    //Get frequency
+                    arrayFrequencies[k] = this.loads[k].frequency;
                 }
 
+                
+
                 //Combine array
-                float result = rule.combine(array);
+                float result = rule.combine(arrayValues, arrayFrequencies);
 
                 //Write value to combined load
                 Array.Copy(BitConverter.GetBytes(result), 0, combinedLoad.bytes, i, 4);

@@ -115,7 +115,7 @@ namespace BMDtoExcel
                 
 
                 //Combine array
-                float result = rule.combine(arrayValues, arrayFrequencies);
+                float result = (float) rule.combine(arrayValues, arrayFrequencies);
 
                 //Write value to combined load
                 Array.Copy(BitConverter.GetBytes(result), 0, combinedLoad.bytes, i, 4);

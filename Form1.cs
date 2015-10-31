@@ -202,6 +202,11 @@ namespace BMDtoExcel
                 {
                     factory.rules.Add(new CQCCombinationRule("CQC", 1.0, 0.03));
                 }
+
+                if (asceCheckBox.Checked)
+                {
+                    factory.rules.Add(new ASCECombinationRule("ASCE", 1.0, 0.03, 2, 33));
+                }
             }
 
             factory.saveToExcelFile(Directory.GetCurrentDirectory() + "\\" + Preferences.fileName + ".xls");

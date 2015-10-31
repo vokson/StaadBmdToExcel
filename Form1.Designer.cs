@@ -340,7 +340,7 @@
             this.bmdLoadListTextBox.Name = "bmdLoadListTextBox";
             this.bmdLoadListTextBox.Size = new System.Drawing.Size(77, 20);
             this.bmdLoadListTextBox.TabIndex = 6;
-            this.bmdLoadListTextBox.Text = "2-4";
+            this.bmdLoadListTextBox.Text = "2-41";
             // 
             // label7
             // 
@@ -519,7 +519,7 @@
             this.mshModeListTextBox.Name = "mshModeListTextBox";
             this.mshModeListTextBox.Size = new System.Drawing.Size(77, 20);
             this.mshModeListTextBox.TabIndex = 6;
-            this.mshModeListTextBox.Text = "1-3";
+            this.mshModeListTextBox.Text = "1-40";
             this.mshModeListTextBox.TextChanged += new System.EventHandler(this.mshModeListTextBox_TextChanged);
             // 
             // xlsLoadListTextBox
@@ -528,7 +528,7 @@
             this.xlsLoadListTextBox.Name = "xlsLoadListTextBox";
             this.xlsLoadListTextBox.Size = new System.Drawing.Size(77, 20);
             this.xlsLoadListTextBox.TabIndex = 6;
-            this.xlsLoadListTextBox.Text = "10, 20, 30";
+            this.xlsLoadListTextBox.Text = "1-40";
             // 
             // sp14CheckBox
             // 

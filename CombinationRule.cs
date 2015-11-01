@@ -247,4 +247,60 @@ namespace BMDtoExcel
             return result;
         }
     }
+
+    // SP 14.13330 formula (9)
+    class SP14CombinationRule : CombinationRule
+    {
+        public SP14CombinationRule(string name, double multiplicator, double modalDamping):
+            base(name, multiplicator, modalDamping)
+        {
+        }
+
+        public override double combine(float[] values, double[] frequencies)
+        {
+            double result = 0.0;
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                result += Math.Pow(values[i], 2);
+            }
+
+            for (int i = 0; i < values.Length - 1; i++)
+            {
+                double Ri = 0;
+
+                if (frequencies[i]/frequencies[i+1] >= 0.9)
+                {
+                    Ri = 2;
+                }
+
+                 result += Ri * Math.Abs(values[i] * values[i+1]);
+            }
+
+            result = Math.Sqrt(result) * multiplicator;
+
+            return (float)result;
+        }
+    }
+
+    // ABS
+    class ABSCombinationRule : CombinationRule
+    {
+        public ABSCombinationRule(string name, double multiplicator, double modalDamping) :
+            base(name, multiplicator, modalDamping)
+        {
+        }
+
+        public override double combine(float[] values, double[] frequencies)
+        {
+            double result = 0.0;
+
+            for (int i = 0; i < values.Length; i++)
+            {
+                result += Math.Abs(values[i]);
+            }
+
+            return (float)result;
+        }
+    }
 }

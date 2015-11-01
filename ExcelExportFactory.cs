@@ -97,6 +97,9 @@ namespace BMDtoExcel
             // Combine byte by byte
             for (int i=0; i < combinedLoad.bytes.Length; i += 4)
             {
+                // TODO
+                // Combine only necessary sections in members
+
                 // Prepare array with values
                 float[] arrayValues = new float[this.loadsCount];
                 // Prepare array with frequencies

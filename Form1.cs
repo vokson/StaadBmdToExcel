@@ -207,6 +207,16 @@ namespace BMDtoExcel
                 {
                     factory.rules.Add(new ASCECombinationRule("ASCE", 1.0, 0.03, 2, 33));
                 }
+
+                if (sp14CheckBox.Checked)
+                {
+                    factory.rules.Add(new SP14CombinationRule("SP14.13330", 1.0, 0.03));
+                }
+
+                if (absCheckBox.Checked)
+                {
+                    factory.rules.Add(new ABSCombinationRule("ABS", 1.0, 0.03));
+                }
             }
 
             factory.saveToExcelFile(Directory.GetCurrentDirectory() + "\\" + Preferences.fileName + ".xls");

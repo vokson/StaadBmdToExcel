@@ -97,31 +97,34 @@ namespace BMDtoExcel
             // Combine byte by byte
             for (int i=0; i < combinedLoad.bytes.Length; i += 4)
             {
-                // TODO
                 // Combine only necessary sections in members
-
-                // Prepare array with values
-                float[] arrayValues = new float[this.loadsCount];
-                // Prepare array with frequencies
-                double[] arrayFrequencies = new double[this.loadsCount];
-
-                // Fill array
-                for (int k=0; k < this.loadsCount; k++)
+                if (this.sections[(int)((i % (13 * 4 * 6)) / (6 * 4))] == true)
                 {
-                    //Read 4 bytes
-                    arrayValues[k] = BitConverter.ToSingle(this.loads[k].bytes, i);
 
-                    //Get frequency
-                    arrayFrequencies[k] = this.loads[k].frequency;
+                    // Prepare array with values
+                    float[] arrayValues = new float[this.loadsCount];
+                    // Prepare array with frequencies
+                    double[] arrayFrequencies = new double[this.loadsCount];
+
+                    // Fill array
+                    for (int k = 0; k < this.loadsCount; k++)
+                    {
+                        //Read 4 bytes
+                        arrayValues[k] = BitConverter.ToSingle(this.loads[k].bytes, i);
+
+                        //Get frequency
+                        arrayFrequencies[k] = this.loads[k].frequency;
+
+                    }
+
+
+
+                    //Combine array
+                    float result = (float)rule.combine(arrayValues, arrayFrequencies);
+
+                    //Write value to combined load
+                    Array.Copy(BitConverter.GetBytes(result), 0, combinedLoad.bytes, i, 4);
                 }
-
-                
-
-                //Combine array
-                float result = (float) rule.combine(arrayValues, arrayFrequencies);
-
-                //Write value to combined load
-                Array.Copy(BitConverter.GetBytes(result), 0, combinedLoad.bytes, i, 4);
             }
 
             // Add combined load
